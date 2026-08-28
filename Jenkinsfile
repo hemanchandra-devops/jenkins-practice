@@ -4,10 +4,14 @@ pipeline {
             label 'AGENT-1'
         }
     }
+    environment { 
+        Course = 'Jenkins'
+    }
     stages {
         stage('Build') {
             steps {
                 echo "Building"
+                echo "$Course"
             }
         }
         stage('Test') {
