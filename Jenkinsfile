@@ -7,11 +7,16 @@ pipeline {
     environment { 
         Course = 'Jenkins'
     }
+    options {
+        timeout(time: 10, unit: 'SECONDS') 
+        disableConcurrentBuilds()
+    }
     stages {
         stage('Build') {
             steps {
                 echo "Building"
                 echo "$Course"
+                sleep 15
             }
         }
         stage('Test') {
@@ -36,6 +41,9 @@ pipeline {
         }
         failure {
             echo 'I will run if pipeline failed'
+        }
+        aborted {
+            echo 'pipeline is aborted'
         }
     }
 }
